@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - HRMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                HR
+            </div>
+
+            <div class="logo-text">
+                <h2>HRMS</h2>
+                <span>Human Resource</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MENU UTAMA</p>
+
+            <a href="dashboard.html" class="menu-item active">
+                <span class="menu-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <p class="menu-title">DATA MASTER</p>
+
+            <a href="data-master.html" class="menu-item">
+                <span class="menu-icon">👥</span>
+                <span>Data Karyawan</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🏢</span>
+                <span>Departemen</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">💼</span>
+                <span>Jabatan</span>
+            </a>
+
+
+            <p class="menu-title">KEPEGAWAIAN</p>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🕒</span>
+                <span>Absensi</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">📅</span>
+                <span>Cuti</span>
+            </a>
+
+
+            <p class="menu-title">LAINNYA</p>
+
+            <a href="laporan.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span>Laporan</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="../index.html" class="menu-item logout">
+                <span class="menu-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="header-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle">
+                    ☰
+                </button>
+
+                <div>
+
+                    <h1>Dashboard</h1>
+
+                    <p>
+                        Selamat datang di Human Resource Management System
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <button class="notification">
+
+                    🔔
+
+                    <span class="notification-badge">
+                        3
+                    </span>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        L
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>Lovita</strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
+                    <span class="profile-arrow">
+                        ⌄
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>Dashboard</h2>
+
+                    <p>
+                        Ringkasan informasi kepegawaian perusahaan.
+                    </p>
+
+                </div>
+
+                <a
+                    href="form.html"
+                    class="btn-primary">
+
+                    + Tambah Karyawan
+
+                </a>
+
+            </div>
+
+
+            <!-- STATISTIC -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon primary">
+                        👥
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Total Karyawan
+                        </span>
+
+                        <h3>
+                            120
+                        </h3>
+
+                        <small>
+                            Data keseluruhan karyawan
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon success">
+                        ✓
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Karyawan Aktif
+                        </span>
+
+                        <h3>
+                            108
+                        </h3>
+
+                        <small>
+                            90% dari total karyawan
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon warning">
+                        📅
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Sedang Cuti
+                        </span>
+
+                        <h3>
+                            7
+                        </h3>
+
+                        <small>
+                            Karyawan sedang cuti
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon danger">
+                        !
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Tidak Hadir
+                        </span>
+
+                        <h3>
+                            5
+                        </h3>
+
+                        <small>
+                            Hari ini
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHART -->
+            <div class="content-grid">
+
+                <div class="card chart-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Jumlah Karyawan
+                            </h3>
+
+                            <p>
+                                Berdasarkan Departemen
+                            </p>
+
+                        </div>
+
+                        <select>
+
+                            <option>
+                                2026
+                            </option>
+
+                            <option>
+                                2025
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="bar-chart">
+
+                        <div class="bar-item">
+
+                            <div class="bar-value">
+                                35
+                            </div>
+
+                            <div class="bar bar-1"></div>
+
+                            <span>
+                                IT
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-item">
+
+                            <div class="bar-value">
+                                28
+                            </div>
+
+                            <div class="bar bar-2"></div>
+
+                            <span>
+                                HR
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-item">
+
+                            <div class="bar-value">
+                                22
+                            </div>
+
+                            <div class="bar bar-3"></div>
+
+                            <span>
+                                Finance
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-item">
+
+                            <div class="bar-value">
+                                20
+                            </div>
+
+                            <div class="bar bar-4"></div>
+
+                            <span>
+                                Marketing
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-item">
+
+                            <div class="bar-value">
+                                15
+                            </div>
+
+                            <div class="bar bar-5"></div>
+
+                            <span>
+                                Operasional
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+                <div class="card status-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Status Karyawan
+                            </h3>
+
+                            <p>
+                                Distribusi status karyawan
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-content">
+
+                        <div class="circle-chart">
+
+                            <div class="circle-inner">
+
+                                <strong>
+                                    120
+                                </strong>
+
+                                <span>
+                                    Total
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="status-list">
+
+                            <div class="status-item">
+
+                                <span class="status-dot active-dot"></span>
+
+                                <span>
+                                    Aktif
+                                </span>
+
+                                <strong>
+                                    108
+                                </strong>
+
+                            </div>
+
+
+                            <div class="status-item">
+
+                                <span class="status-dot leave-dot"></span>
+
+                                <span>
+                                    Cuti
+                                </span>
+
+                                <strong>
+                                    7
+                                </strong>
+
+                            </div>
+
+
+                            <div class="status-item">
+
+                                <span class="status-dot inactive-dot"></span>
+
+                                <span>
+                                    Tidak Aktif
+                                </span>
+
+                                <strong>
+                                    5
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ABSENSI -->
+            <div class="card table-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Absensi Terbaru
+                        </h3>
+
+                        <p>
+                            Data absensi karyawan terbaru
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="#"
+                        class="view-all">
+
+                        Lihat Semua →
+
+                    </a>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    No
+                                </th>
+
+                                <th>
+                                    Nama Karyawan
+                                </th>
+
+                                <th>
+                                    Departemen
+                                </th>
+
+                                <th>
+                                    Tanggal
+                                </th>
+
+                                <th>
+                                    Jam Masuk
+                                </th>
+
+                                <th>
+                                    Jam Keluar
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    1
+                                </td>
+
+                                <td>
+
+                                    <div class="employee">
+
+                                        <div class="employee-avatar">
+                                            AS
+                                        </div>
+
+                                        <span>
+                                            Andi Saputra
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    IT
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:00
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+
+                                    <span class="badge badge-success">
+                                        Hadir
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    2
+                                </td>
+
+                                <td>
+
+                                    <div class="employee">
+
+                                        <div class="employee-avatar">
+                                            DS
+                                        </div>
+
+                                        <span>
+                                            Dina Sari
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    HR
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:05
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+
+                                    <span class="badge badge-success">
+                                        Hadir
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    3
+                                </td>
+
+                                <td>
+
+                                    <div class="employee">
+
+                                        <div class="employee-avatar">
+                                            RP
+                                        </div>
+
+                                        <span>
+                                            Rizky Pratama
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    Finance
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:15
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+
+                                    <span class="badge badge-warning">
+                                        Terlambat
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    4
+                                </td>
+
+                                <td>
+
+                                    <div class="employee">
+
+                                        <div class="employee-avatar">
+                                            SW
+                                        </div>
+
+                                        <span>
+                                            Sinta Wulandari
+                                        </span>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    Marketing
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    -
+                                </td>
+
+                                <td>
+                                    -
+                                </td>
+
+                                <td>
+
+                                    <span class="badge badge-danger">
+                                        Tidak Hadir
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <p>
+                © 2026 HRMS - Human Resource Management System
+            </p>
+
+            <p>
+                Designed for Academic Project
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <script src="../assets/js/script.js"></script>
+
+</body>
+
+</html>

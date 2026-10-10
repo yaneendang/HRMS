@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Laporan - HRMS</title>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="../assets/css/style.css">
+
+
+    <!-- STYLE KHUSUS CETAK -->
+    <style>
+
+        .report-filter {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .report-filter .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+        }
+
+
+        .report-filter label {
+
+            font-weight: 600;
+
+            color: #334155;
+
+            font-size: 14px;
+
+        }
+
+
+        .report-filter select,
+        .report-filter input {
+
+            padding: 12px 14px;
+
+            border: 1px solid #dbe2ea;
+
+            border-radius: 8px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+        }
+
+
+        .report-filter select:focus,
+        .report-filter input:focus {
+
+            border-color: #4f46e5;
+
+        }
+
+
+        .report-button {
+
+            display: flex;
+
+            align-items: end;
+
+        }
+
+
+        .report-button button {
+
+            width: 100%;
+
+            height: 44px;
+
+        }
+
+
+        .report-result {
+
+            display: none;
+
+            margin-top: 25px;
+
+        }
+
+
+        .report-result.show {
+
+            display: block;
+
+        }
+
+
+        .report-header-print {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .report-header-print h3 {
+
+            margin: 0;
+
+            color: #172554;
+
+        }
+
+
+        .report-header-print p {
+
+            margin-top: 5px;
+
+            color: #64748b;
+
+        }
+
+
+        .btn-print {
+
+            background: #0f766e;
+
+            color: white;
+
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+        }
+
+
+        .btn-print:hover {
+
+            background: #115e59;
+
+        }
+
+
+        .report-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .summary-box {
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 18px;
+
+            background: #ffffff;
+
+        }
+
+
+        .summary-box span {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .summary-box strong {
+
+            font-size: 24px;
+
+            color: #172554;
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .report-filter {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .report-summary {
+
+                grid-template-columns: 1fr 1fr;
+
+            }
+
+        }
+
+
+        @media print {
+
+            body {
+
+                background: white !important;
+
+            }
+
+
+            .sidebar,
+            .header,
+            .page-header,
+            .report-filter,
+            .footer,
+            .btn-print {
+
+                display: none !important;
+
+            }
+
+
+            .main-content {
+
+                margin: 0 !important;
+
+                width: 100% !important;
+
+            }
+
+
+            .content {
+
+                padding: 0 !important;
+
+            }
+
+
+            .card {
+
+                box-shadow: none !important;
+
+                border: none !important;
+
+            }
+
+
+            .report-result {
+
+                display: block !important;
+
+            }
+
+
+            .report-summary {
+
+                grid-template-columns:
+                    repeat(4, 1fr);
+
+            }
+
+
+            table {
+
+                width: 100%;
+
+                border-collapse: collapse;
+
+            }
+
+
+            th,
+            td {
+
+                border: 1px solid #333 !important;
+
+                padding: 8px !important;
+
+                color: #000 !important;
+
+            }
+
+
+            th {
+
+                background: #f1f5f9 !important;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                HR
+            </div>
+
+
+            <div class="logo-text">
+
+                <h2>
+                    HRMS
+                </h2>
+
+                <span>
+                    Human Resource
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="sidebar-menu">
+
+
+            <p class="menu-title">
+                MENU UTAMA
+            </p>
+
+
+            <a
+                href="../layout.html"
+                class="menu-item">
+
+                <span class="menu-icon">
+                    ▦
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <p class="menu-title">
+                DATA MASTER
+            </p>
+
+
+            <a
+                href="data-master.html"
+                class="menu-item">
+
+                <span class="menu-icon">
+                    👥
+                </span>
+
+                <span>
+                    Data Karyawan
+                </span>
+
+            </a>
+
+
+            <a
+                href="departemen.html"
+                class="menu-item">
+
+                <span class="menu-icon">
+                    🏢
+                </span>
+
+                <span>
+                    Departemen
+                </span>
+
+            </a>
+
+
+            <a
+                href="jabatan.html"
+                class="menu-item">
+
+                <span class="menu-icon">
+                    💼
+                </span>
+
+                <span>
+                    Jabatan
+                </span>
+
+            </a>
+
+
+            <p class="menu-title">
+                KEPEGAWAIAN
+            </p>
+
+
+            <a
+                href="absensi.html"
+                class="menu-item">
+
+                <span class="menu-icon">
+                    🕒
+                </span>
+
+                <span>
+                    Absensi
+                </span>
+
+            </a>
+
+
+            <a
+                href="cuti.html"
+                class="menu-item">
+
+                <span class="menu-icon">
+                    📅
+                </span>
+
+                <span>
+                    Cuti
+                </span>
+
+            </a>
+
+
+            <p class="menu-title">
+                LAINNYA
+            </p>
+
+
+            <a
+                href="laporan.html"
+                class="menu-item active">
+
+                <span class="menu-icon">
+                    📊
+                </span>
+
+                <span>
+                    Laporan
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="../index.html"
+                class="menu-item logout">
+
+                <span class="menu-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+
+            <div class="header-left">
+
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle">
+
+                    ☰
+
+                </button>
+
+
+                <div>
+
+                    <h1>
+                        Laporan
+                    </h1>
+
+                    <p>
+                        Laporan data kepegawaian perusahaan
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="header-right">
+
+
+                <button
+                    class="notification">
+
+                    🔔
+
+                    <span
+                        class="notification-badge">
+
+                        3
+
+                    </span>
+
+                </button>
+
+
+                <div class="profile">
+
+
+                    <div class="profile-avatar">
+                        L
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            Lovita
+                        </strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
+
+                    <span class="profile-arrow">
+                        ⌄
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =========================
+             CONTENT
+        ========================== -->
+
+        <section class="content">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Laporan
+                    </h2>
+
+                    <p>
+                        Pilih jenis laporan dan periode
+                        yang ingin ditampilkan.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 FILTER LAPORAN
+            ========================== -->
+
+            <div class="card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Filter Laporan
+                        </h3>
+
+                        <p>
+                            Tentukan laporan yang ingin
+                            ditampilkan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-filter">
+
+
+                    <!-- JENIS LAPORAN -->
+
+                    <div class="form-group">
+
+                        <label for="jenisLaporan">
+                            Jenis Laporan
+                        </label>
+
+
+                        <select
+                            id="jenisLaporan">
+
+                            <option value="absensi">
+                                Laporan Absensi
+                            </option>
+
+                            <option value="cuti">
+                                Laporan Cuti
+                            </option>
+
+                            <option value="karyawan">
+                                Laporan Karyawan
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- TANGGAL MULAI -->
+
+                    <div class="form-group">
+
+                        <label for="tanggalMulai">
+                            Tanggal Mulai
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="tanggalMulai"
+                            value="2026-10-01">
+
+                    </div>
+
+
+
+                    <!-- TANGGAL SELESAI -->
+
+                    <div class="form-group">
+
+                        <label for="tanggalSelesai">
+                            Tanggal Selesai
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="tanggalSelesai"
+                            value="2026-10-06">
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- TOMBOL TAMPILKAN -->
+
+                <div
+                    style="
+                        display:flex;
+                        justify-content:flex-end;
+                        margin-top:10px;
+                    ">
+
+                    <button
+                        class="btn-primary"
+                        id="btnTampilkan">
+
+                        🔍 Tampilkan Laporan
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 HASIL LAPORAN
+            ========================== -->
+
+            <div
+                class="card report-result"
+                id="reportResult">
+
+
+                <!-- HEADER HASIL -->
+
+                <div class="report-header-print">
+
+
+                    <div>
+
+                        <h3 id="judulLaporan">
+                            Laporan Absensi
+                        </h3>
+
+
+                        <p id="periodeLaporan">
+                            Periode 01 Oktober 2026
+                            - 06 Oktober 2026
+                        </p>
+
+                    </div>
+
+
+                    <!-- CETAK -->
+
+                    <button
+                        class="btn-print"
+                        id="btnCetak">
+
+                        🖨️ Cetak Laporan
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =========================
+                     RINGKASAN
+                ========================== -->
+
+                <div class="report-summary">
+
+
+                    <div class="summary-box">
+
+                        <span>
+                            Total Data
+                        </span>
+
+                        <strong id="totalData">
+                            5
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-box">
+
+                        <span>
+                            Hadir
+                        </span>
+
+                        <strong>
+                            3
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-box">
+
+                        <span>
+                            Terlambat
+                        </span>
+
+                        <strong>
+                            1
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-box">
+
+                        <span>
+                            Tidak Hadir
+                        </span>
+
+                        <strong>
+                            1
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =========================
+                     TABLE LAPORAN
+                ========================== -->
+
+                <div class="table-wrapper">
+
+
+                    <table>
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    No
+                                </th>
+
+                                <th>
+                                    Nama Karyawan
+                                </th>
+
+                                <th>
+                                    Departemen
+                                </th>
+
+                                <th>
+                                    Tanggal
+                                </th>
+
+                                <th>
+                                    Jam Masuk
+                                </th>
+
+                                <th>
+                                    Jam Keluar
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="reportTable">
+
+
+                            <tr>
+
+                                <td>
+                                    1
+                                </td>
+
+                                <td>
+                                    Andi Saputra
+                                </td>
+
+                                <td>
+                                    IT
+                                </td>
+
+                                <td>
+                                    01 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:00
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+                                    <span
+                                        class="badge badge-success">
+
+                                        Hadir
+
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    2
+                                </td>
+
+                                <td>
+                                    Dina Sari
+                                </td>
+
+                                <td>
+                                    HR
+                                </td>
+
+                                <td>
+                                    02 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:05
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+                                    <span
+                                        class="badge badge-success">
+
+                                        Hadir
+
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    3
+                                </td>
+
+                                <td>
+                                    Rizky Pratama
+                                </td>
+
+                                <td>
+                                    Finance
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:15
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+                                    <span
+                                        class="badge badge-warning">
+
+                                        Terlambat
+
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    4
+                                </td>
+
+                                <td>
+                                    Sinta Wulandari
+                                </td>
+
+                                <td>
+                                    Marketing
+                                </td>
+
+                                <td>
+                                    04 Oktober 2026
+                                </td>
+
+                                <td>
+                                    -
+                                </td>
+
+                                <td>
+                                    -
+                                </td>
+
+                                <td>
+                                    <span
+                                        class="badge badge-danger">
+
+                                        Tidak Hadir
+
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    5
+                                </td>
+
+                                <td>
+                                    Budi Santoso
+                                </td>
+
+                                <td>
+                                    Operasional
+                                </td>
+
+                                <td>
+                                    05 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:00
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+                                    <span
+                                        class="badge badge-success">
+
+                                        Hadir
+
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+
+                    </table>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            <p>
+                © 2026 HRMS -
+                Human Resource Management System
+            </p>
+
+            <p>
+                Designed for Academic Project
+            </p>
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        const btnTampilkan =
+            document.getElementById(
+                "btnTampilkan"
+            );
+
+
+        const btnCetak =
+            document.getElementById(
+                "btnCetak"
+            );
+
+
+        const reportResult =
+            document.getElementById(
+                "reportResult"
+            );
+
+
+        const jenisLaporan =
+            document.getElementById(
+                "jenisLaporan"
+            );
+
+
+        const tanggalMulai =
+            document.getElementById(
+                "tanggalMulai"
+            );
+
+
+        const tanggalSelesai =
+            document.getElementById(
+                "tanggalSelesai"
+            );
+
+
+        const judulLaporan =
+            document.getElementById(
+                "judulLaporan"
+            );
+
+
+        const periodeLaporan =
+            document.getElementById(
+                "periodeLaporan"
+            );
+
+
+        const totalData =
+            document.getElementById(
+                "totalData"
+            );
+
+
+        const reportTable =
+            document.getElementById(
+                "reportTable"
+            );
+
+
+
+        // ==========================================
+        // TOMBOL TAMPILKAN LAPORAN
+        // ==========================================
+
+        btnTampilkan.addEventListener(
+            "click",
+            function () {
+
+
+                if (
+                    tanggalMulai.value === "" ||
+                    tanggalSelesai.value === ""
+                ) {
+
+                    alert(
+                        "Silakan pilih tanggal terlebih dahulu."
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    tanggalMulai.value >
+                    tanggalSelesai.value
+                ) {
+
+                    alert(
+                        "Tanggal mulai tidak boleh lebih besar dari tanggal selesai."
+                    );
+
+                    return;
+
+                }
+
+
+                // JENIS LAPORAN
+
+                if (
+                    jenisLaporan.value ===
+                    "absensi"
+                ) {
+
+                    judulLaporan.textContent =
+                        "Laporan Absensi";
+
+                }
+
+                else if (
+                    jenisLaporan.value ===
+                    "cuti"
+                ) {
+
+                    judulLaporan.textContent =
+                        "Laporan Cuti";
+
+                }
+
+                else {
+
+                    judulLaporan.textContent =
+                        "Laporan Karyawan";
+
+                }
+
+
+                // FORMAT TANGGAL
+
+                const mulai =
+                    formatTanggal(
+                        tanggalMulai.value
+                    );
+
+
+                const selesai =
+                    formatTanggal(
+                        tanggalSelesai.value
+                    );
+
+
+                periodeLaporan.textContent =
+                    "Periode " +
+                    mulai +
+                    " - " +
+                    selesai;
+
+
+                // TAMPILKAN HASIL
+
+                reportResult.classList.add(
+                    "show"
+                );
+
+
+                // SCROLL KE HASIL
+
+                reportResult.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+
+            }
+        );
+
+
+
+        // ==========================================
+        // TOMBOL CETAK
+        // ==========================================
+
+        btnCetak.addEventListener(
+            "click",
+            function () {
+
+                window.print();
+
+            }
+        );
+
+
+
+        // ==========================================
+        // FORMAT TANGGAL
+        // ==========================================
+
+        function formatTanggal(
+            tanggal
+        ) {
+
+            const date =
+                new Date(
+                    tanggal + "T00:00:00"
+                );
+
+
+            const bulan = [
+
+                "Januari",
+                "Februari",
+                "Maret",
+                "April",
+                "Mei",
+                "Juni",
+                "Juli",
+                "Agustus",
+                "September",
+                "Oktober",
+                "November",
+                "Desember"
+
+            ];
+
+
+            return (
+                date.getDate() +
+                " " +
+                bulan[date.getMonth()] +
+                " " +
+                date.getFullYear()
+            );
+
+        }
+
+
+
+        // ==========================================
+        // SIDEBAR MOBILE
+        // ==========================================
+
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+
+        const sidebar =
+            document.querySelector(
+                ".sidebar"
+            );
+
+
+        if (menuToggle) {
+
+            menuToggle.addEventListener(
+                "click",
+                function () {
+
+                    sidebar.classList.toggle(
+                        "show"
+                    );
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

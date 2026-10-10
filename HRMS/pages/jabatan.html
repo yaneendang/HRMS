@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jabatan - HRMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                HR
+            </div>
+
+            <div class="logo-text">
+                <h2>HRMS</h2>
+                <span>Human Resource</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MENU UTAMA</p>
+
+            <a href="../layout.html" class="menu-item">
+                <span class="menu-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <p class="menu-title">DATA MASTER</p>
+
+            <a href="data-master.html" class="menu-item">
+                <span class="menu-icon">👥</span>
+                <span>Data Karyawan</span>
+            </a>
+
+            <a href="departemen.html" class="menu-item">
+                <span class="menu-icon">🏢</span>
+                <span>Departemen</span>
+            </a>
+
+            <a href="jabatan.html" class="menu-item active">
+                <span class="menu-icon">💼</span>
+                <span>Jabatan</span>
+            </a>
+
+
+            <p class="menu-title">KEPEGAWAIAN</p>
+
+            <a href="absensi.html" class="menu-item">
+                <span class="menu-icon">🕒</span>
+                <span>Absensi</span>
+            </a>
+
+            <a href="cuti.html" class="menu-item">
+                <span class="menu-icon">📅</span>
+                <span>Cuti</span>
+            </a>
+
+
+            <p class="menu-title">LAINNYA</p>
+
+            <a href="laporan.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span>Laporan</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="../index.html" class="menu-item logout">
+                <span class="menu-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    ☰
+                </button>
+
+                <div>
+
+                    <h1>Jabatan</h1>
+
+                    <p>
+                        Kelola data jabatan perusahaan
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <button class="notification">
+                    🔔
+                    <span class="notification-badge">
+                        3
+                    </span>
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        L
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>Lovita</strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
+                    <span class="profile-arrow">
+                        ⌄
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             CONTENT
+        ========================== -->
+
+        <section class="content">
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Data Jabatan
+                    </h2>
+
+                    <p>
+                        Daftar jabatan perusahaan.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-primary"
+                    id="btnTambahJabatan">
+
+                    + Tambah Jabatan
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 TABLE
+            ========================== -->
+
+            <div class="card table-card">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    No
+                                </th>
+
+                                <th>
+                                    Nama Jabatan
+                                </th>
+
+                                <th>
+                                    Aksi
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="jabatanTable">
+
+                            <tr>
+                                <td>1</td>
+                                <td>Staff IT</td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editJabatan(this)">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusJabatan(this)">
+                                        Hapus
+                                    </button>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>2</td>
+                                <td>HR Staff</td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editJabatan(this)">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusJabatan(this)">
+                                        Hapus
+                                    </button>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>3</td>
+                                <td>Finance Staff</td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editJabatan(this)">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusJabatan(this)">
+                                        Hapus
+                                    </button>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>4</td>
+                                <td>Marketing Staff</td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editJabatan(this)">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusJabatan(this)">
+                                        Hapus
+                                    </button>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>5</td>
+                                <td>Supervisor</td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editJabatan(this)">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusJabatan(this)">
+                                        Hapus
+                                    </button>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            <p>
+                © 2026 HRMS - Human Resource Management System
+            </p>
+
+            <p>
+                Designed for Academic Project
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =========================
+         MODAL TAMBAH JABATAN
+    ========================== -->
+
+    <div
+        class="modal-overlay"
+        id="jabatanModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h3>
+                        Tambah Jabatan
+                    </h3>
+
+                    <p>
+                        Masukkan nama jabatan baru
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="btnCloseJabatan">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <form id="jabatanForm">
+
+                <div class="form-group">
+
+                    <label for="namaJabatan">
+
+                        Nama Jabatan
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="namaJabatan"
+                        placeholder="Contoh: Staff IT"
+                        required>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="btnBatalJabatan">
+
+                        Batal
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary">
+
+                        Simpan
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="../assets/js/script.js"></script>
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const btnTambah =
+                document.getElementById("btnTambahJabatan");
+
+            const modal =
+                document.getElementById("jabatanModal");
+
+            const btnClose =
+                document.getElementById("btnCloseJabatan");
+
+            const btnBatal =
+                document.getElementById("btnBatalJabatan");
+
+            const form =
+                document.getElementById("jabatanForm");
+
+            const inputNama =
+                document.getElementById("namaJabatan");
+
+
+            /* =========================
+               BUKA MODAL
+            ========================== */
+
+            btnTambah.addEventListener("click", function () {
+
+                modal.classList.add("show");
+
+                inputNama.focus();
+
+            });
+
+
+            /* =========================
+               TUTUP MODAL
+            ========================== */
+
+            btnClose.addEventListener("click", function () {
+
+                modal.classList.remove("show");
+
+                form.reset();
+
+            });
+
+
+            btnBatal.addEventListener("click", function () {
+
+                modal.classList.remove("show");
+
+                form.reset();
+
+            });
+
+
+            /* =========================
+               KLIK LUAR MODAL
+            ========================== */
+
+            modal.addEventListener("click", function (e) {
+
+                if (e.target === modal) {
+
+                    modal.classList.remove("show");
+
+                    form.reset();
+
+                }
+
+            });
+
+
+            /* =========================
+               SIMPAN JABATAN
+            ========================== */
+
+            form.addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+
+                const nama =
+                    inputNama.value.trim();
+
+
+                if (nama === "") {
+
+                    alert(
+                        "Nama jabatan harus diisi!"
+                    );
+
+                    return;
+
+                }
+
+
+                const table =
+                    document.getElementById("jabatanTable");
+
+
+                const jumlah =
+                    table.querySelectorAll("tr").length + 1;
+
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${jumlah}
+                    </td>
+
+                    <td>
+                        ${nama}
+                    </td>
+
+                    <td>
+
+                        <button
+                            type="button"
+                            onclick="editJabatan(this)">
+
+                            Edit
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            onclick="hapusJabatan(this)">
+
+                            Hapus
+
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                table.appendChild(row);
+
+
+                alert(
+                    "Jabatan berhasil ditambahkan!"
+                );
+
+
+                modal.classList.remove("show");
+
+                form.reset();
+
+            });
+
+        });
+
+
+        /* =========================
+           EDIT JABATAN
+        ========================== */
+
+        function editJabatan(button) {
+
+            const row =
+                button.closest("tr");
+
+
+            const namaLama =
+                row.cells[1].textContent;
+
+
+            const namaBaru =
+                prompt(
+                    "Edit nama jabatan:",
+                    namaLama
+                );
+
+
+            if (
+                namaBaru !== null &&
+                namaBaru.trim() !== ""
+            ) {
+
+                row.cells[1].textContent =
+                    namaBaru.trim();
+
+
+                alert(
+                    "Jabatan berhasil diubah!"
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           HAPUS JABATAN
+        ========================== */
+
+        function hapusJabatan(button) {
+
+            const row =
+                button.closest("tr");
+
+
+            const nama =
+                row.cells[1].textContent;
+
+
+            const yakin =
+                confirm(
+                    "Apakah kamu yakin ingin menghapus jabatan " +
+                    nama +
+                    "?"
+                );
+
+
+            if (yakin) {
+
+                row.remove();
+
+
+                const rows =
+                    document.querySelectorAll(
+                        "#jabatanTable tr"
+                    );
+
+
+                rows.forEach(function (
+                    row,
+                    index
+                ) {
+
+                    row.cells[0].textContent =
+                        index + 1;
+
+                });
+
+
+                alert(
+                    "Jabatan berhasil dihapus!"
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

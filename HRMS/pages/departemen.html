@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Departemen - HRMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .department-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .department-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #dbe2ea;
+            border-radius: 8px;
+            padding: 10px 14px;
+            width: 300px;
+            background: white;
+        }
+
+        .department-search input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-edit {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-edit:hover {
+            background: #d97706;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+        }
+
+        .modal-close {
+            border: none;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #dbe2ea;
+            border-radius: 8px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            border-color: #4f46e5;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            border: none;
+            background: #e2e8f0;
+            color: #334155;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .empty-data {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+        }
+
+        @media (max-width: 700px) {
+            .department-toolbar {
+                justify-content: stretch;
+            }
+
+            .department-search {
+                width: 100%;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                HR
+            </div>
+
+            <div class="logo-text">
+                <h2>HRMS</h2>
+                <span>Human Resource</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">
+                MENU UTAMA
+            </p>
+
+            <a href="../layout.html" class="menu-item">
+                <span class="menu-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <p class="menu-title">
+                DATA MASTER
+            </p>
+
+            <a href="data-master.html" class="menu-item">
+                <span class="menu-icon">👥</span>
+                <span>Data Karyawan</span>
+            </a>
+
+            <a href="departemen.html" class="menu-item active">
+                <span class="menu-icon">🏢</span>
+                <span>Departemen</span>
+            </a>
+
+            <a href="jabatan.html" class="menu-item">
+                <span class="menu-icon">💼</span>
+                <span>Jabatan</span>
+            </a>
+
+
+            <p class="menu-title">
+                KEPEGAWAIAN
+            </p>
+
+            <a href="absensi.html" class="menu-item">
+                <span class="menu-icon">🕒</span>
+                <span>Absensi</span>
+            </a>
+
+            <a href="cuti.html" class="menu-item">
+                <span class="menu-icon">📅</span>
+                <span>Cuti</span>
+            </a>
+
+
+            <p class="menu-title">
+                LAINNYA
+            </p>
+
+            <a href="laporan.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span>Laporan</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="../index.html" class="menu-item logout">
+                <span class="menu-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle">
+
+                    ☰
+
+                </button>
+
+                <div>
+
+                    <h1>
+                        Departemen
+                    </h1>
+
+                    <p>
+                        Kelola data departemen perusahaan
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <button class="notification">
+                    🔔
+                    <span class="notification-badge">
+                        3
+                    </span>
+                </button>
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        L
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>
+                            Lovita
+                        </strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
+                    <span class="profile-arrow">
+                        ⌄
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Data Departemen
+                    </h2>
+
+                    <p>
+                        Kelola departemen yang terdapat dalam perusahaan.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-primary"
+                    id="btnTambahDepartemen">
+
+                    + Tambah Departemen
+
+                </button>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="card table-card">
+
+
+                <div class="department-toolbar">
+
+                    <div class="department-search">
+
+                        🔍
+
+                        <input
+                            type="text"
+                            id="searchDepartemen"
+                            placeholder="Cari departemen...">
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    No
+                                </th>
+
+                                <th>
+                                    Nama Departemen
+                                </th>
+
+                                <th>
+                                    Jumlah Karyawan
+                                </th>
+
+                                <th>
+                                    Aksi
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="departmentTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            <p>
+                © 2026 HRMS - Human Resource Management System
+            </p>
+
+            <p>
+                Designed for Academic Project
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="departmentModal">
+
+        <div class="modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h3 id="modalTitle">
+                        Tambah Departemen
+                    </h3>
+
+                </div>
+
+
+                <button
+                    class="modal-close"
+                    id="btnCloseModal">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <form id="departmentForm">
+
+
+                <input
+                    type="hidden"
+                    id="editIndex">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Nama Departemen
+                    </label>
+
+                    <input
+                        type="text"
+                        id="namaDepartemen"
+                        placeholder="Contoh: IT">
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="btnCancel">
+
+                        Batal
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary">
+
+                        Simpan Data
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // =========================================
+        // DATA DEPARTEMEN
+        // =========================================
+
+        let departments = [
+
+            {
+                nama: "IT",
+                jumlah: 35
+            },
+
+            {
+                nama: "HR",
+                jumlah: 28
+            },
+
+            {
+                nama: "Finance",
+                jumlah: 22
+            },
+
+            {
+                nama: "Marketing",
+                jumlah: 20
+            },
+
+            {
+                nama: "Operasional",
+                jumlah: 15
+            }
+
+        ];
+
+
+        // =========================================
+        // ELEMENT
+        // =========================================
+
+        const table =
+            document.getElementById(
+                "departmentTable"
+            );
+
+        const modal =
+            document.getElementById(
+                "departmentModal"
+            );
+
+        const form =
+            document.getElementById(
+                "departmentForm"
+            );
+
+        const nama =
+            document.getElementById(
+                "namaDepartemen"
+            );
+
+        const editIndex =
+            document.getElementById(
+                "editIndex"
+            );
+
+        const modalTitle =
+            document.getElementById(
+                "modalTitle"
+            );
+
+
+        // =========================================
+        // TAMPILKAN DATA
+        // =========================================
+
+        function tampilkanData(
+            data = departments
+        ) {
+
+            table.innerHTML = "";
+
+
+            if (data.length === 0) {
+
+                table.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="empty-data">
+
+                            Data departemen tidak ditemukan.
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+            data.forEach(
+                function(dept, index) {
+
+                    const row =
+                        document.createElement("tr");
+
+
+                    row.innerHTML = `
+
+                        <td>
+                            ${index + 1}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${dept.nama}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${dept.jumlah} karyawan
+                        </td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button
+                                    class="btn-edit"
+                                    onclick="editDepartemen(${departments.indexOf(dept)})">
+
+                                    Edit
+
+                                </button>
+
+                                <button
+                                    class="btn-delete"
+                                    onclick="hapusDepartemen(${departments.indexOf(dept)})">
+
+                                    Hapus
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    `;
+
+
+                    table.appendChild(row);
+
+                }
+            );
+
+        }
+
+
+        // =========================================
+        // BUKA MODAL TAMBAH
+        // =========================================
+
+        document
+            .getElementById(
+                "btnTambahDepartemen"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    modalTitle.textContent =
+                        "Tambah Departemen";
+
+                    form.reset();
+
+                    editIndex.value = "";
+
+                    modal.classList.add(
+                        "show"
+                    );
+
+                    nama.focus();
+
+                }
+            );
+
+
+        // =========================================
+        // TUTUP MODAL
+        // =========================================
+
+        function tutupModal() {
+
+            modal.classList.remove(
+                "show"
+            );
+
+            form.reset();
+
+            editIndex.value = "";
+
+        }
+
+
+        document
+            .getElementById(
+                "btnCloseModal"
+            )
+            .addEventListener(
+                "click",
+                tutupModal
+            );
+
+
+        document
+            .getElementById(
+                "btnCancel"
+            )
+            .addEventListener(
+                "click",
+                tutupModal
+            );
+
+
+        // =========================================
+        // SIMPAN DATA
+        // =========================================
+
+        form.addEventListener(
+            "submit",
+            function(e) {
+
+                e.preventDefault();
+
+
+                const namaDepartemen =
+                    nama.value.trim();
+
+
+                if (
+                    namaDepartemen === ""
+                ) {
+
+                    alert(
+                        "Nama departemen wajib diisi."
+                    );
+
+                    nama.focus();
+
+                    return;
+
+                }
+
+
+                const index =
+                    editIndex.value;
+
+
+                if (index === "") {
+
+                    departments.push({
+
+                        nama: namaDepartemen,
+
+                        jumlah: 0
+
+                    });
+
+                    alert(
+                        "Departemen berhasil ditambahkan."
+                    );
+
+                } else {
+
+                    departments[index].nama =
+                        namaDepartemen;
+
+                    alert(
+                        "Departemen berhasil diperbarui."
+                    );
+
+                }
+
+
+                tampilkanData();
+
+                tutupModal();
+
+            }
+        );
+
+
+        // =========================================
+        // EDIT
+        // =========================================
+
+        function editDepartemen(index) {
+
+            modalTitle.textContent =
+                "Edit Departemen";
+
+            nama.value =
+                departments[index].nama;
+
+            editIndex.value =
+                index;
+
+            modal.classList.add(
+                "show"
+            );
+
+            nama.focus();
+
+        }
+
+
+        // =========================================
+        // HAPUS
+        // =========================================
+
+        function hapusDepartemen(index) {
+
+            const yakin =
+                confirm(
+                    "Apakah kamu yakin ingin menghapus departemen ini?"
+                );
+
+
+            if (!yakin) {
+
+                return;
+
+            }
+
+
+            departments.splice(
+                index,
+                1
+            );
+
+
+            tampilkanData();
+
+
+            alert(
+                "Departemen berhasil dihapus."
+            );
+
+        }
+
+
+        // =========================================
+        // SEARCH
+        // =========================================
+
+        document
+            .getElementById(
+                "searchDepartemen"
+            )
+            .addEventListener(
+                "input",
+                function() {
+
+                    const keyword =
+                        this.value
+                            .toLowerCase()
+                            .trim();
+
+
+                    const hasil =
+                        departments.filter(
+                            function(dept) {
+
+                                return dept.nama
+                                    .toLowerCase()
+                                    .includes(keyword);
+
+                            }
+                        );
+
+
+                    tampilkanData(
+                        hasil
+                    );
+
+                }
+            );
+
+
+        // =========================================
+        // SIDEBAR MOBILE
+        // =========================================
+
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+        const sidebar =
+            document.querySelector(
+                ".sidebar"
+            );
+
+
+        if (menuToggle) {
+
+            menuToggle.addEventListener(
+                "click",
+                function() {
+
+                    sidebar.classList.toggle(
+                        "show"
+                    );
+
+                }
+            );
+
+        }
+
+
+        // =========================================
+        // TAMPILKAN DATA SAAT HALAMAN DIBUKA
+        // =========================================
+
+        tampilkanData();
+
+    </script>
+
+</body>
+
+</html>

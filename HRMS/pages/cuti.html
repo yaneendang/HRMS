@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cuti - HRMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">HR</div>
+
+            <div class="logo-text">
+                <h2>HRMS</h2>
+                <span>Human Resource</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MENU UTAMA</p>
+
+            <a href="../layout.html" class="menu-item">
+                <span class="menu-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <p class="menu-title">DATA MASTER</p>
+
+            <a href="data-master.html" class="menu-item">
+                <span class="menu-icon">👥</span>
+                <span>Data Karyawan</span>
+            </a>
+
+            <a href="departemen.html" class="menu-item">
+                <span class="menu-icon">🏢</span>
+                <span>Departemen</span>
+            </a>
+
+            <a href="jabatan.html" class="menu-item">
+                <span class="menu-icon">💼</span>
+                <span>Jabatan</span>
+            </a>
+
+            <p class="menu-title">KEPEGAWAIAN</p>
+
+            <a href="absensi.html" class="menu-item">
+                <span class="menu-icon">🕒</span>
+                <span>Absensi</span>
+            </a>
+
+            <a href="cuti.html" class="menu-item active">
+                <span class="menu-icon">📅</span>
+                <span>Cuti</span>
+            </a>
+
+            <p class="menu-title">LAINNYA</p>
+
+            <a href="laporan.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span>Laporan</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="../index.html" class="menu-item logout">
+                <span class="menu-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="header-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    ☰
+                </button>
+
+                <div>
+                    <h1>Cuti</h1>
+                    <p>Kelola data cuti karyawan</p>
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <button class="notification">
+                    🔔
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        L
+                    </div>
+
+                    <div class="profile-info">
+                        <strong>Lovita</strong>
+                        <span>Administrator</span>
+                    </div>
+
+                    <span class="profile-arrow">
+                        ⌄
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+
+                <div>
+                    <h2>Data Cuti</h2>
+                    <p>Kelola pengajuan cuti karyawan.</p>
+                </div>
+
+                <button
+                    class="btn-primary"
+                    id="btnTambahCuti">
+
+                    + Tambah Cuti
+
+                </button>
+
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="card table-card">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Karyawan</th>
+                                <th>Tanggal Mulai</th>
+                                <th>Tanggal Selesai</th>
+                                <th>Alasan</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="cutiTable">
+
+                            <tr>
+                                <td>1</td>
+                                <td>Andi Saputra</td>
+                                <td>05 Oktober 2026</td>
+                                <td>07 Oktober 2026</td>
+                                <td>Keperluan keluarga</td>
+                                <td>
+                                    <span class="badge badge-success">
+                                        Disetujui
+                                    </span>
+                                </td>
+                                <td>
+                                    <button
+                                        class="btn-edit"
+                                        onclick="editCuti(0)">
+                                        ✏️
+                                    </button>
+
+                                    <button
+                                        class="btn-delete"
+                                        onclick="hapusCuti(0)">
+                                        🗑️
+                                    </button>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>2</td>
+                                <td>Dina Sari</td>
+                                <td>10 Oktober 2026</td>
+                                <td>12 Oktober 2026</td>
+                                <td>Keperluan pribadi</td>
+                                <td>
+                                    <span class="badge badge-warning">
+                                        Menunggu
+                                    </span>
+                                </td>
+                                <td>
+                                    <button
+                                        class="btn-edit"
+                                        onclick="editCuti(1)">
+                                        ✏️
+                                    </button>
+
+                                    <button
+                                        class="btn-delete"
+                                        onclick="hapusCuti(1)">
+                                        🗑️
+                                    </button>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>3</td>
+                                <td>Rizky Pratama</td>
+                                <td>15 Oktober 2026</td>
+                                <td>16 Oktober 2026</td>
+                                <td>Sakit</td>
+                                <td>
+                                    <span class="badge badge-danger">
+                                        Ditolak
+                                    </span>
+                                </td>
+                                <td>
+                                    <button
+                                        class="btn-edit"
+                                        onclick="editCuti(2)">
+                                        ✏️
+                                    </button>
+
+                                    <button
+                                        class="btn-delete"
+                                        onclick="hapusCuti(2)">
+                                        🗑️
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <p>
+                © 2026 HRMS - Human Resource Management System
+            </p>
+
+            <p>
+                Designed for Academic Project
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- MODAL -->
+    <div
+        class="modal-overlay"
+        id="cutiModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <h3 id="modalTitle">
+                        Tambah Cuti
+                    </h3>
+
+                    <p>
+                        Masukkan informasi cuti karyawan
+                    </p>
+                </div>
+
+                <button
+                    class="modal-close"
+                    id="btnCloseModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="cutiForm">
+
+                <input
+                    type="hidden"
+                    id="editIndex">
+
+
+                <div class="form-grid">
+
+                    <!-- KARYAWAN -->
+                    <div class="form-group">
+
+                        <label for="namaKaryawan">
+                            Nama Karyawan <span>*</span>
+                        </label>
+
+                        <select id="namaKaryawan" required>
+
+                            <option value="">
+                                Pilih Karyawan
+                            </option>
+
+                            <option value="Andi Saputra">
+                                Andi Saputra
+                            </option>
+
+                            <option value="Dina Sari">
+                                Dina Sari
+                            </option>
+
+                            <option value="Rizky Pratama">
+                                Rizky Pratama
+                            </option>
+
+                            <option value="Sinta Wulandari">
+                                Sinta Wulandari
+                            </option>
+
+                            <option value="Budi Santoso">
+                                Budi Santoso
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TANGGAL MULAI -->
+                    <div class="form-group">
+
+                        <label for="tanggalMulai">
+                            Tanggal Mulai <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="tanggalMulai"
+                            required>
+
+                    </div>
+
+
+                    <!-- TANGGAL SELESAI -->
+                    <div class="form-group">
+
+                        <label for="tanggalSelesai">
+                            Tanggal Selesai <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="tanggalSelesai"
+                            required>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+                    <div class="form-group">
+
+                        <label for="statusCuti">
+                            Status <span>*</span>
+                        </label>
+
+                        <select id="statusCuti">
+
+                            <option value="Menunggu">
+                                Menunggu
+                            </option>
+
+                            <option value="Disetujui">
+                                Disetujui
+                            </option>
+
+                            <option value="Ditolak">
+                                Ditolak
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ALASAN -->
+                    <div
+                        class="form-group"
+                        style="grid-column: 1 / -1;">
+
+                        <label for="alasan">
+                            Alasan Cuti <span>*</span>
+                        </label>
+
+                        <textarea
+                            id="alasan"
+                            rows="4"
+                            placeholder="Masukkan alasan cuti"
+                            required></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="btnCancel">
+                        Batal
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary">
+                        Simpan Data
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT KHUSUS CUTI -->
+    <script>
+
+        const modal = document.getElementById("cutiModal");
+        const btnTambah = document.getElementById("btnTambahCuti");
+        const btnClose = document.getElementById("btnCloseModal");
+        const btnCancel = document.getElementById("btnCancel");
+        const form = document.getElementById("cutiForm");
+
+        const namaKaryawan = document.getElementById("namaKaryawan");
+        const tanggalMulai = document.getElementById("tanggalMulai");
+        const tanggalSelesai = document.getElementById("tanggalSelesai");
+        const alasan = document.getElementById("alasan");
+        const statusCuti = document.getElementById("statusCuti");
+
+        const editIndex = document.getElementById("editIndex");
+
+        const table = document.getElementById("cutiTable");
+
+        let dataCuti = [
+            {
+                nama: "Andi Saputra",
+                mulai: "05 Oktober 2026",
+                selesai: "07 Oktober 2026",
+                alasan: "Keperluan keluarga",
+                status: "Disetujui"
+            },
+            {
+                nama: "Dina Sari",
+                mulai: "10 Oktober 2026",
+                selesai: "12 Oktober 2026",
+                alasan: "Keperluan pribadi",
+                status: "Menunggu"
+            },
+            {
+                nama: "Rizky Pratama",
+                mulai: "15 Oktober 2026",
+                selesai: "16 Oktober 2026",
+                alasan: "Sakit",
+                status: "Ditolak"
+            }
+        ];
+
+
+        // BUKA MODAL TAMBAH
+        btnTambah.addEventListener("click", function () {
+
+            form.reset();
+
+            editIndex.value = "";
+
+            document.getElementById("modalTitle").textContent =
+                "Tambah Cuti";
+
+            modal.classList.add("show");
+
+        });
+
+
+        // TUTUP MODAL
+        btnClose.addEventListener("click", function () {
+            modal.classList.remove("show");
+        });
+
+
+        btnCancel.addEventListener("click", function () {
+            modal.classList.remove("show");
+        });
+
+
+        // SIMPAN DATA
+        form.addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            const data = {
+
+                nama: namaKaryawan.value,
+
+                mulai: tanggalMulai.value,
+
+                selesai: tanggalSelesai.value,
+
+                alasan: alasan.value,
+
+                status: statusCuti.value
+
+            };
+
+
+            if (editIndex.value === "") {
+
+                dataCuti.push(data);
+
+                alert("Data cuti berhasil ditambahkan!");
+
+            } else {
+
+                dataCuti[editIndex.value] = data;
+
+                alert("Data cuti berhasil diperbarui!");
+
+            }
+
+
+            renderTable();
+
+            modal.classList.remove("show");
+
+        });
+
+
+        // TAMPILKAN DATA
+        function renderTable() {
+
+            table.innerHTML = "";
+
+            dataCuti.forEach(function (data, index) {
+
+                let badgeClass = "badge-warning";
+
+                if (data.status === "Disetujui") {
+                    badgeClass = "badge-success";
+                }
+
+                if (data.status === "Ditolak") {
+                    badgeClass = "badge-danger";
+                }
+
+
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+
+                    <td>${index + 1}</td>
+
+                    <td>${data.nama}</td>
+
+                    <td>${data.mulai}</td>
+
+                    <td>${data.selesai}</td>
+
+                    <td>${data.alasan}</td>
+
+                    <td>
+                        <span class="badge ${badgeClass}">
+                            ${data.status}
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="btn-edit"
+                            onclick="editCuti(${index})">
+                            ✏️
+                        </button>
+
+                        <button
+                            class="btn-delete"
+                            onclick="hapusCuti(${index})">
+                            🗑️
+                        </button>
+
+                    </td>
+                `;
+
+                table.appendChild(row);
+
+            });
+
+        }
+
+
+        // EDIT
+        function editCuti(index) {
+
+            const data = dataCuti[index];
+
+            namaKaryawan.value = data.nama;
+
+            tanggalMulai.value = ubahTanggal(data.mulai);
+
+            tanggalSelesai.value = ubahTanggal(data.selesai);
+
+            alasan.value = data.alasan;
+
+            statusCuti.value = data.status;
+
+            editIndex.value = index;
+
+            document.getElementById("modalTitle").textContent =
+                "Edit Data Cuti";
+
+            modal.classList.add("show");
+
+        }
+
+
+        // HAPUS
+        function hapusCuti(index) {
+
+            const yakin = confirm(
+                "Apakah Anda yakin ingin menghapus data cuti ini?"
+            );
+
+            if (yakin) {
+
+                dataCuti.splice(index, 1);
+
+                renderTable();
+
+                alert("Data cuti berhasil dihapus!");
+
+            }
+
+        }
+
+
+        // UBAH FORMAT TANGGAL
+        function ubahTanggal(tanggal) {
+
+            const bulan = {
+                Januari: "01",
+                Februari: "02",
+                Maret: "03",
+                April: "04",
+                Mei: "05",
+                Juni: "06",
+                Juli: "07",
+                Agustus: "08",
+                September: "09",
+                Oktober: "10",
+                November: "11",
+                Desember: "12"
+            };
+
+            const bagian = tanggal.split(" ");
+
+            if (bagian.length === 3) {
+
+                return (
+                    bagian[2] +
+                    "-" +
+                    bulan[bagian[1]] +
+                    "-" +
+                    bagian[0].padStart(2, "0")
+                );
+
+            }
+
+            return "";
+
+        }
+
+
+        // SIDEBAR MOBILE
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        if (menuToggle) {
+
+            menuToggle.addEventListener("click", function () {
+
+                sidebar.classList.toggle("show");
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

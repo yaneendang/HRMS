@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Form Karyawan - HRMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                HR
+            </div>
+
+            <div class="logo-text">
+                <h2>HRMS</h2>
+                <span>Human Resource</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MENU UTAMA</p>
+
+            <a href="dashboard.html" class="menu-item">
+                <span class="menu-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <p class="menu-title">DATA MASTER</p>
+
+            <a href="data-master.html" class="menu-item">
+                <span class="menu-icon">👥</span>
+                <span>Data Karyawan</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🏢</span>
+                <span>Departemen</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">💼</span>
+                <span>Jabatan</span>
+            </a>
+
+
+            <p class="menu-title">KEPEGAWAIAN</p>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🕒</span>
+                <span>Absensi</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">📅</span>
+                <span>Cuti</span>
+            </a>
+
+
+            <p class="menu-title">LAINNYA</p>
+
+            <a href="laporan.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span>Laporan</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="../index.html" class="menu-item logout">
+                <span class="menu-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="header-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle">
+
+                    ☰
+
+                </button>
+
+                <div>
+
+                    <h1>
+                        Form Karyawan
+                    </h1>
+
+                    <p>
+                        Tambah atau edit data karyawan
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <button class="notification">
+
+                    🔔
+
+                    <span class="notification-badge">
+                        3
+                    </span>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        L
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>
+                            Lovita
+                        </strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
+                    <span class="profile-arrow">
+                        ⌄
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Form Data Karyawan
+                    </h2>
+
+                    <p>
+                        Lengkapi informasi karyawan dengan benar.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM CARD -->
+            <div class="card employee-form-card">
+
+                <div class="form-card-header">
+
+                    <div class="form-title-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Informasi Karyawan
+                        </h3>
+
+                        <p>
+                            Data pribadi dan informasi pekerjaan
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="employeePageForm">
+
+                    <!-- DATA PRIBADI -->
+                    <div class="form-section">
+
+                        <h4>
+                            Data Pribadi
+                        </h4>
+
+                        <div class="form-grid">
+
+
+                            <!-- NIK -->
+                            <div class="form-group">
+
+                                <label for="formNik">
+                                    NIK <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="formNik"
+                                    placeholder="Masukkan NIK">
+
+                                <small class="form-error"
+                                    id="nikError">
+                                </small>
+
+                            </div>
+
+
+                            <!-- NAMA -->
+                            <div class="form-group">
+
+                                <label for="formNama">
+                                    Nama Lengkap <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="formNama"
+                                    placeholder="Masukkan nama lengkap">
+
+                                <small class="form-error"
+                                    id="namaError">
+                                </small>
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+                            <div class="form-group">
+
+                                <label for="formEmail">
+                                    Email <span>*</span>
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="formEmail"
+                                    placeholder="nama@email.com">
+
+                                <small class="form-error"
+                                    id="emailError">
+                                </small>
+
+                            </div>
+
+
+                            <!-- NO HP -->
+                            <div class="form-group">
+
+                                <label for="formPhone">
+                                    No. HP <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="formPhone"
+                                    placeholder="08xxxxxxxxxx">
+
+                                <small class="form-error"
+                                    id="phoneError">
+                                </small>
+
+                            </div>
+
+
+                            <!-- ALAMAT -->
+                            <div class="form-group full-width">
+
+                                <label for="formAddress">
+                                    Alamat
+                                </label>
+
+                                <textarea
+                                    id="formAddress"
+                                    rows="4"
+                                    placeholder="Masukkan alamat lengkap"></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DATA PEKERJAAN -->
+                    <div class="form-section">
+
+                        <h4>
+                            Informasi Pekerjaan
+                        </h4>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- DEPARTEMEN -->
+                            <div class="form-group">
+
+                                <label for="formDepartment">
+                                    Departemen <span>*</span>
+                                </label>
+
+                                <select id="formDepartment">
+
+                                    <option value="">
+                                        Pilih Departemen
+                                    </option>
+
+                                    <option value="IT">
+                                        IT
+                                    </option>
+
+                                    <option value="HR">
+                                        HR
+                                    </option>
+
+                                    <option value="Finance">
+                                        Finance
+                                    </option>
+
+                                    <option value="Marketing">
+                                        Marketing
+                                    </option>
+
+                                    <option value="Operasional">
+                                        Operasional
+                                    </option>
+
+                                </select>
+
+                                <small
+                                    class="form-error"
+                                    id="departmentError">
+                                </small>
+
+                            </div>
+
+
+                            <!-- JABATAN -->
+                            <div class="form-group">
+
+                                <label for="formPosition">
+                                    Jabatan <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="formPosition"
+                                    placeholder="Contoh: Staff IT">
+
+                                <small
+                                    class="form-error"
+                                    id="positionError">
+                                </small>
+
+                            </div>
+
+
+                            <!-- STATUS -->
+                            <div class="form-group">
+
+                                <label for="formStatus">
+                                    Status <span>*</span>
+                                </label>
+
+                                <select id="formStatus">
+
+                                    <option value="">
+                                        Pilih Status
+                                    </option>
+
+                                    <option value="Aktif">
+                                        Aktif
+                                    </option>
+
+                                    <option value="Tidak Aktif">
+                                        Tidak Aktif
+                                    </option>
+
+                                </select>
+
+                                <small
+                                    class="form-error"
+                                    id="statusError">
+                                </small>
+
+                            </div>
+
+
+                            <!-- TANGGAL MASUK -->
+                            <div class="form-group">
+
+                                <label for="formJoinDate">
+                                    Tanggal Masuk
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="formJoinDate">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+                    <div class="form-actions">
+
+                        <a
+                            href="data-master.html"
+                            class="btn-secondary">
+
+                            Batal
+
+                        </a>
+
+
+                        <button
+                            type="submit"
+                            class="btn-primary">
+
+                            ✓ Simpan Data
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <p>
+                © 2026 HRMS - Human Resource Management System
+            </p>
+
+            <p>
+                Designed for Academic Project
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <script src="../assets/js/script.js"></script>
+
+</body>
+
+</html>

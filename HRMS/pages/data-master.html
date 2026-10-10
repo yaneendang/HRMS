@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Karyawan - HRMS</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                HR
+            </div>
+
+            <div class="logo-text">
+                <h2>HRMS</h2>
+                <span>Human Resource</span>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MENU SIDEBAR
+        ================================================== -->
+        <nav class="sidebar-menu">
+
+            <!-- MENU UTAMA -->
+            <p class="menu-title">MENU UTAMA</p>
+
+            <!-- Dashboard -->
+            <a href="../layout.html" class="menu-item">
+                <span class="menu-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <!-- DATA MASTER -->
+            <p class="menu-title">DATA MASTER</p>
+
+            <!-- Data Karyawan -->
+            <a href="data-master.html" class="menu-item active">
+                <span class="menu-icon">👥</span>
+                <span>Data Karyawan</span>
+            </a>
+
+            <!-- Departemen -->
+            <a href="departemen.html" class="menu-item">
+                <span class="menu-icon">🏢</span>
+                <span>Departemen</span>
+            </a>
+
+            <!-- Jabatan -->
+            <a href="jabatan.html" class="menu-item">
+                <span class="menu-icon">💼</span>
+                <span>Jabatan</span>
+            </a>
+
+
+            <!-- KEPEGAWAIAN -->
+            <p class="menu-title">KEPEGAWAIAN</p>
+
+            <!-- Absensi -->
+            <a href="absensi.html" class="menu-item">
+                <span class="menu-icon">🕒</span>
+                <span>Absensi</span>
+            </a>
+
+            <!-- Cuti -->
+            <a href="cuti.html" class="menu-item">
+                <span class="menu-icon">📅</span>
+                <span>Cuti</span>
+            </a>
+
+
+            <!-- LAINNYA -->
+            <p class="menu-title">LAINNYA</p>
+
+            <!-- Laporan -->
+            <a href="laporan.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span>Laporan</span>
+            </a>
+
+        </nav>
+
+
+        <!-- =================================================
+             LOGOUT
+        ================================================== -->
+        <div class="sidebar-bottom">
+
+            <a href="../index.html" class="menu-item logout">
+                <span class="menu-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+    <main class="main-content">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+        <header class="header">
+
+            <div class="header-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button">
+
+                    ☰
+
+                </button>
+
+                <div>
+
+                    <h1>Data Karyawan</h1>
+
+                    <p>
+                        Kelola data karyawan perusahaan
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+<div class="header-right">
+
+    <!-- NOTIFIKASI -->
+    <div class="hrms-dropdown">
+        <button
+            class="notification"
+            id="notificationBtn"
+            type="button"
+            aria-label="Buka notifikasi"
+            aria-expanded="false">
+
+            🔔
+            <span class="notification-badge">3</span>
+        </button>
+
+        <div
+            class="hrms-dropdown-menu"
+            id="notificationMenu">
+
+            <h3>Notifikasi</h3>
+
+            <a class="hrms-dropdown-item" href="absensi.html">
+                <strong>Absensi terbaru</strong>
+                <small>Periksa data kehadiran karyawan.</small>
+            </a>
+
+            <a class="hrms-dropdown-item" href="cuti.html">
+                <strong>Pengajuan cuti</strong>
+                <small>Periksa data pengajuan cuti.</small>
+            </a>
+
+            <a class="hrms-dropdown-item" href="data-master.html">
+                <strong>Data karyawan</strong>
+                <small>Lihat data karyawan HRMS.</small>
+            </a>
+        </div>
+    </div>
+
+    <!-- PROFIL LOVITA -->
+    <div class="hrms-dropdown">
+        <button
+            class="profile hrms-profile-button"
+            id="profileBtn"
+            type="button"
+            aria-label="Buka menu profil"
+            aria-expanded="false">
+
+            <span class="profile-avatar">L</span>
+
+            <span class="profile-info">
+                <strong>Lovita</strong>
+                <span>Administrator</span>
+            </span>
+
+            <span class="profile-arrow">⌄</span>
+        </button>
+
+        <div
+            class="hrms-dropdown-menu hrms-profile-menu"
+            id="profileMenu">
+
+            <div class="hrms-profile-heading">
+                <strong>Lovita Rosiyane Endang</strong>
+                <small>Administrator HRMS</small>
+            </div>
+
+            <button
+                type="button"
+                class="hrms-dropdown-item"
+                id="profileDetailBtn">
+                Profil Saya
+            </button>
+
+            <button
+                type="button"
+                class="hrms-dropdown-item"
+                id="settingsBtn">
+                Pengaturan Akun
+            </button>
+
+            <button
+                type="button"
+                class="hrms-dropdown-item hrms-logout"
+                id="logoutBtn">
+                Logout
+            </button>
+        </div>
+    </div>
+
+</div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+        <section class="content">
+
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Data Karyawan
+                    </h2>
+
+                    <p>
+                        Kelola informasi seluruh karyawan.
+                    </p>
+
+                </div>
+
+
+                <!-- TAMBAH KARYAWAN -->
+                <button
+                    type="button"
+                    class="btn-primary"
+                    id="btnTambah">
+
+                    + Tambah Karyawan
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 TABLE CARD
+            ================================================== -->
+            <div class="card table-card">
+
+
+                <!-- FILTER -->
+                <div class="employee-toolbar">
+
+
+                    <!-- SEARCH -->
+                    <div class="search-box">
+
+                        <span>🔍</span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Cari nama atau NIK...">
+
+                    </div>
+
+
+                    <!-- FILTER DEPARTEMEN -->
+                    <select
+                        id="filterDepartment"
+                        class="filter-select">
+
+                        <option value="all">
+                            Semua Departemen
+                        </option>
+
+                        <option value="IT">
+                            IT
+                        </option>
+
+                        <option value="HR">
+                            HR
+                        </option>
+
+                        <option value="Finance">
+                            Finance
+                        </option>
+
+                        <option value="Marketing">
+                            Marketing
+                        </option>
+
+                        <option value="Operasional">
+                            Operasional
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- =================================================
+                     TABLE
+                ================================================== -->
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>No</th>
+
+                                <th>NIK</th>
+
+                                <th>Nama Karyawan</th>
+
+                                <th>Email</th>
+
+                                <th>Departemen</th>
+
+                                <th>Jabatan</th>
+
+                                <th>Status</th>
+
+                                <th>Aksi</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="employeeTable">
+
+                            <!--
+                                Data karyawan akan
+                                ditampilkan oleh JavaScript
+                            -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+        <footer class="footer">
+
+            <p>
+                © 2026 HRMS - Human Resource Management System
+            </p>
+
+            <p>
+                Designed for Academic Project
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =====================================================
+         MODAL TAMBAH / EDIT KARYAWAN
+    ====================================================== -->
+    <div
+        class="modal-overlay"
+        id="employeeModal">
+
+        <div class="modal">
+
+
+            <!-- MODAL HEADER -->
+            <div class="modal-header">
+
+                <div>
+
+                    <h3 id="modalTitle">
+                        Tambah Karyawan
+                    </h3>
+
+                    <p>
+                        Masukkan informasi karyawan
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="btnCloseModal">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <!-- FORM -->
+            <form id="employeeForm">
+
+
+                <!-- INDEX EDIT -->
+                <input
+                    type="hidden"
+                    id="editIndex">
+
+
+                <div class="form-grid">
+
+
+                    <!-- NIK -->
+                    <div class="form-group">
+
+                        <label for="nik">
+                            NIK <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nik"
+                            placeholder="Contoh: 2026001">
+
+                    </div>
+
+
+                    <!-- NAMA -->
+                    <div class="form-group">
+
+                        <label for="nama">
+                            Nama Lengkap <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nama"
+                            placeholder="Masukkan nama lengkap">
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email <span>*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="nama@email.com">
+
+                    </div>
+
+
+                    <!-- DEPARTEMEN -->
+                    <div class="form-group">
+
+                        <label for="department">
+                            Departemen <span>*</span>
+                        </label>
+
+                        <select id="department">
+
+                            <option value="">
+                                Pilih Departemen
+                            </option>
+
+                            <option value="IT">
+                                IT
+                            </option>
+
+                            <option value="HR">
+                                HR
+                            </option>
+
+                            <option value="Finance">
+                                Finance
+                            </option>
+
+                            <option value="Marketing">
+                                Marketing
+                            </option>
+
+                            <option value="Operasional">
+                                Operasional
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- JABATAN -->
+                    <div class="form-group">
+
+                        <label for="position">
+                            Jabatan <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="position"
+                            placeholder="Contoh: Staff IT">
+
+                    </div>
+
+
+                    <!-- STATUS -->
+                    <div class="form-group">
+
+                        <label for="status">
+                            Status <span>*</span>
+                        </label>
+
+                        <select id="status">
+
+                            <option value="Aktif">
+                                Aktif
+                            </option>
+
+                            <option value="Tidak Aktif">
+                                Tidak Aktif
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MODAL FOOTER -->
+                <div class="modal-footer">
+
+                    <!-- BATAL -->
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="btnCancel">
+
+                        Batal
+
+                    </button>
+
+
+                    <!-- SIMPAN -->
+                    <button
+                        type="submit"
+                        class="btn-primary">
+
+                        Simpan Data
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+    <script src="../assets/js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Absensi - HRMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                HR
+            </div>
+
+            <div class="logo-text">
+                <h2>HRMS</h2>
+                <span>Human Resource</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">MENU UTAMA</p>
+
+            <a href="../layout.html" class="menu-item">
+                <span class="menu-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <p class="menu-title">DATA MASTER</p>
+
+            <a href="data-master.html" class="menu-item">
+                <span class="menu-icon">👥</span>
+                <span>Data Karyawan</span>
+            </a>
+
+            <a href="departemen.html" class="menu-item">
+                <span class="menu-icon">🏢</span>
+                <span>Departemen</span>
+            </a>
+
+            <a href="jabatan.html" class="menu-item">
+                <span class="menu-icon">💼</span>
+                <span>Jabatan</span>
+            </a>
+
+
+            <p class="menu-title">KEPEGAWAIAN</p>
+
+            <a href="absensi.html" class="menu-item active">
+                <span class="menu-icon">🕒</span>
+                <span>Absensi</span>
+            </a>
+
+            <a href="cuti.html" class="menu-item">
+                <span class="menu-icon">📅</span>
+                <span>Cuti</span>
+            </a>
+
+
+            <p class="menu-title">LAINNYA</p>
+
+            <a href="laporan.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span>Laporan</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="../index.html" class="menu-item logout">
+                <span class="menu-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    ☰
+                </button>
+
+                <div>
+
+                    <h1>Absensi</h1>
+
+                    <p>
+                        Kelola data absensi karyawan
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <button class="notification">
+
+                    🔔
+
+                    <span class="notification-badge">
+                        3
+                    </span>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        L
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>Lovita</strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
+                    <span class="profile-arrow">
+                        ⌄
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             CONTENT
+        ========================== -->
+
+        <section class="content">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h2>
+                        Data Absensi
+                    </h2>
+
+                    <p>
+                        Kelola data kehadiran karyawan.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-primary"
+                    id="btnTambahAbsensi">
+
+                    + Tambah Absensi
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 FILTER
+            ========================== -->
+
+            <div class="card table-card">
+
+                <div class="employee-toolbar">
+
+
+                    <div class="search-box">
+
+                        <span>🔍</span>
+
+                        <input
+                            type="text"
+                            id="searchAbsensi"
+                            placeholder="Cari nama karyawan...">
+
+                    </div>
+
+
+                    <input
+                        type="date"
+                        id="filterTanggal"
+                        class="filter-select">
+
+
+                    <select
+                        id="filterStatus"
+                        class="filter-select">
+
+                        <option value="all">
+                            Semua Status
+                        </option>
+
+                        <option value="Hadir">
+                            Hadir
+                        </option>
+
+                        <option value="Terlambat">
+                            Terlambat
+                        </option>
+
+                        <option value="Izin">
+                            Izin
+                        </option>
+
+                        <option value="Tidak Hadir">
+                            Tidak Hadir
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- =========================
+                     TABLE
+                ========================== -->
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>No</th>
+
+                                <th>
+                                    Nama Karyawan
+                                </th>
+
+                                <th>
+                                    Departemen
+                                </th>
+
+                                <th>
+                                    Tanggal
+                                </th>
+
+                                <th>
+                                    Jam Masuk
+                                </th>
+
+                                <th>
+                                    Jam Keluar
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Aksi
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="absensiTable">
+
+
+                            <!-- DATA 1 -->
+
+                            <tr>
+
+                                <td>1</td>
+
+                                <td>
+                                    Andi Saputra
+                                </td>
+
+                                <td>
+                                    IT
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:00
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+
+                                    <span class="badge badge-success">
+                                        Hadir
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editAbsensi(this)">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusAbsensi(this)">
+
+                                        Hapus
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- DATA 2 -->
+
+                            <tr>
+
+                                <td>2</td>
+
+                                <td>
+                                    Dina Sari
+                                </td>
+
+                                <td>
+                                    HR
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:05
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+
+                                    <span class="badge badge-success">
+                                        Hadir
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editAbsensi(this)">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusAbsensi(this)">
+
+                                        Hapus
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- DATA 3 -->
+
+                            <tr>
+
+                                <td>3</td>
+
+                                <td>
+                                    Rizky Pratama
+                                </td>
+
+                                <td>
+                                    Finance
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    08:15
+                                </td>
+
+                                <td>
+                                    17:00
+                                </td>
+
+                                <td>
+
+                                    <span class="badge badge-warning">
+                                        Terlambat
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editAbsensi(this)">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusAbsensi(this)">
+
+                                        Hapus
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- DATA 4 -->
+
+                            <tr>
+
+                                <td>4</td>
+
+                                <td>
+                                    Sinta Wulandari
+                                </td>
+
+                                <td>
+                                    Marketing
+                                </td>
+
+                                <td>
+                                    03 Oktober 2026
+                                </td>
+
+                                <td>
+                                    -
+                                </td>
+
+                                <td>
+                                    -
+                                </td>
+
+                                <td>
+
+                                    <span class="badge badge-danger">
+                                        Tidak Hadir
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        onclick="editAbsensi(this)">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onclick="hapusAbsensi(this)">
+
+                                        Hapus
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer class="footer">
+
+            <p>
+                © 2026 HRMS - Human Resource Management System
+            </p>
+
+            <p>
+                Designed for Academic Project
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =========================
+         MODAL TAMBAH ABSENSI
+    ========================== -->
+
+    <div
+        class="modal-overlay"
+        id="absensiModal">
+
+
+        <div class="modal">
+
+
+            <!-- MODAL HEADER -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h3>
+                        Tambah Absensi
+                    </h3>
+
+                    <p>
+                        Masukkan data kehadiran karyawan
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="btnCloseAbsensi">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form id="absensiForm">
+
+
+                <!-- NAMA -->
+
+                <div class="form-group">
+
+                    <label for="namaKaryawan">
+
+                        Nama Karyawan
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="namaKaryawan"
+                        placeholder="Contoh: Andi Saputra"
+                        required>
+
+                </div>
+
+
+                <!-- DEPARTEMEN -->
+
+                <div class="form-group">
+
+                    <label for="departemenAbsensi">
+
+                        Departemen
+
+                    </label>
+
+
+                    <select
+                        id="departemenAbsensi"
+                        required>
+
+                        <option value="">
+                            Pilih Departemen
+                        </option>
+
+                        <option value="IT">
+                            IT
+                        </option>
+
+                        <option value="HR">
+                            HR
+                        </option>
+
+                        <option value="Finance">
+                            Finance
+                        </option>
+
+                        <option value="Marketing">
+                            Marketing
+                        </option>
+
+                        <option value="Operasional">
+                            Operasional
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TANGGAL -->
+
+                <div class="form-group">
+
+                    <label for="tanggalAbsensi">
+
+                        Tanggal
+
+                    </label>
+
+
+                    <input
+                        type="date"
+                        id="tanggalAbsensi"
+                        required>
+
+                </div>
+
+
+                <!-- JAM MASUK -->
+
+                <div class="form-group">
+
+                    <label for="jamMasuk">
+
+                        Jam Masuk
+
+                    </label>
+
+
+                    <input
+                        type="time"
+                        id="jamMasuk">
+
+                </div>
+
+
+                <!-- JAM KELUAR -->
+
+                <div class="form-group">
+
+                    <label for="jamKeluar">
+
+                        Jam Keluar
+
+                    </label>
+
+
+                    <input
+                        type="time"
+                        id="jamKeluar">
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label for="statusAbsensi">
+
+                        Status
+
+                    </label>
+
+
+                    <select
+                        id="statusAbsensi"
+                        required>
+
+                        <option value="Hadir">
+                            Hadir
+                        </option>
+
+                        <option value="Terlambat">
+                            Terlambat
+                        </option>
+
+                        <option value="Izin">
+                            Izin
+                        </option>
+
+                        <option value="Tidak Hadir">
+                            Tidak Hadir
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="btnBatalAbsensi">
+
+                        Batal
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary">
+
+                        Simpan Absensi
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT UTAMA -->
+
+    <script src="../assets/js/script.js"></script>
+
+
+    <!-- JAVASCRIPT ABSENSI -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const btnTambah =
+                    document.getElementById(
+                        "btnTambahAbsensi"
+                    );
+
+
+                const modal =
+                    document.getElementById(
+                        "absensiModal"
+                    );
+
+
+                const btnClose =
+                    document.getElementById(
+                        "btnCloseAbsensi"
+                    );
+
+
+                const btnBatal =
+                    document.getElementById(
+                        "btnBatalAbsensi"
+                    );
+
+
+                const form =
+                    document.getElementById(
+                        "absensiForm"
+                    );
+
+
+                const table =
+                    document.getElementById(
+                        "absensiTable"
+                    );
+
+
+                /*
+                =========================
+                BUKA MODAL
+                =========================
+                */
+
+                btnTambah.addEventListener(
+                    "click",
+                    function () {
+
+                        modal.classList.add(
+                            "show"
+                        );
+
+                    }
+                );
+
+
+                /*
+                =========================
+                TUTUP MODAL
+                =========================
+                */
+
+                btnClose.addEventListener(
+                    "click",
+                    function () {
+
+                        modal.classList.remove(
+                            "show"
+                        );
+
+                        form.reset();
+
+                    }
+                );
+
+
+                btnBatal.addEventListener(
+                    "click",
+                    function () {
+
+                        modal.classList.remove(
+                            "show"
+                        );
+
+                        form.reset();
+
+                    }
+                );
+
+
+                /*
+                =========================
+                KLIK LUAR MODAL
+                =========================
+                */
+
+                modal.addEventListener(
+                    "click",
+                    function (e) {
+
+                        if (
+                            e.target === modal
+                        ) {
+
+                            modal.classList.remove(
+                                "show"
+                            );
+
+                            form.reset();
+
+                        }
+
+                    }
+                );
+
+
+                /*
+                =========================
+                SIMPAN ABSENSI
+                =========================
+                */
+
+                form.addEventListener(
+                    "submit",
+                    function (e) {
+
+                        e.preventDefault();
+
+
+                        const nama =
+                            document.getElementById(
+                                "namaKaryawan"
+                            ).value.trim();
+
+
+                        const departemen =
+                            document.getElementById(
+                                "departemenAbsensi"
+                            ).value;
+
+
+                        const tanggal =
+                            document.getElementById(
+                                "tanggalAbsensi"
+                            ).value;
+
+
+                        const jamMasuk =
+                            document.getElementById(
+                                "jamMasuk"
+                            ).value || "-";
+
+
+                        const jamKeluar =
+                            document.getElementById(
+                                "jamKeluar"
+                            ).value || "-";
+
+
+                        const status =
+                            document.getElementById(
+                                "statusAbsensi"
+                            ).value;
+
+
+                        if (
+                            nama === "" ||
+                            departemen === "" ||
+                            tanggal === ""
+                        ) {
+
+                            alert(
+                                "Data wajib diisi!"
+                            );
+
+                            return;
+
+                        }
+
+
+                        /*
+                        FORMAT TANGGAL
+                        */
+
+                        const dateObject =
+                            new Date(
+                                tanggal +
+                                "T00:00:00"
+                            );
+
+
+                        const options = {
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric"
+                        };
+
+
+                        const tanggalFormat =
+                            dateObject.toLocaleDateString(
+                                "id-ID",
+                                options
+                            );
+
+
+                        /*
+                        NOMOR BARIS
+                        */
+
+                        const nomor =
+                            table.querySelectorAll(
+                                "tr"
+                            ).length + 1;
+
+
+                        /*
+                        BUAT BARIS BARU
+                        */
+
+                        const row =
+                            document.createElement(
+                                "tr"
+                            );
+
+
+                        let badgeClass =
+                            "badge-success";
+
+
+                        if (
+                            status === "Terlambat"
+                        ) {
+
+                            badgeClass =
+                                "badge-warning";
+
+                        }
+
+
+                        if (
+                            status === "Tidak Hadir"
+                        ) {
+
+                            badgeClass =
+                                "badge-danger";
+
+                        }
+
+
+                        if (
+                            status === "Izin"
+                        ) {
+
+                            badgeClass =
+                                "badge-warning";
+
+                        }
+
+
+                        row.innerHTML = `
+
+                            <td>
+                                ${nomor}
+                            </td>
+
+                            <td>
+                                ${nama}
+                            </td>
+
+                            <td>
+                                ${departemen}
+                            </td>
+
+                            <td>
+                                ${tanggalFormat}
+                            </td>
+
+                            <td>
+                                ${jamMasuk}
+                            </td>
+
+                            <td>
+                                ${jamKeluar}
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="badge ${badgeClass}">
+
+                                    ${status}
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    type="button"
+                                    onclick="editAbsensi(this)">
+
+                                    Edit
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    onclick="hapusAbsensi(this)">
+
+                                    Hapus
+
+                                </button>
+
+                            </td>
+
+                        `;
+
+
+                        table.appendChild(row);
+
+
+                        alert(
+                            "Data absensi berhasil ditambahkan!"
+                        );
+
+
+                        modal.classList.remove(
+                            "show"
+                        );
+
+
+                        form.reset();
+
+                    }
+                );
+
+            }
+        );
+
+
+        /*
+        =========================
+        EDIT ABSENSI
+        =========================
+        */
+
+        function editAbsensi(button) {
+
+            const row =
+                button.closest("tr");
+
+
+            const namaLama =
+                row.cells[1].textContent.trim();
+
+
+            const namaBaru =
+                prompt(
+                    "Edit nama karyawan:",
+                    namaLama
+                );
+
+
+            if (
+                namaBaru !== null &&
+                namaBaru.trim() !== ""
+            ) {
+
+                row.cells[1].textContent =
+                    namaBaru.trim();
+
+
+                alert(
+                    "Data absensi berhasil diubah!"
+                );
+
+            }
+
+        }
+
+
+        /*
+        =========================
+        HAPUS ABSENSI
+        =========================
+        */
+
+        function hapusAbsensi(button) {
+
+            const row =
+                button.closest("tr");
+
+
+            const nama =
+                row.cells[1].textContent.trim();
+
+
+            const yakin =
+                confirm(
+                    "Hapus data absensi " +
+                    nama +
+                    "?"
+                );
+
+
+            if (yakin) {
+
+                row.remove();
+
+
+                /*
+                PERBAIKI NOMOR
+                */
+
+                const rows =
+                    document.querySelectorAll(
+                        "#absensiTable tr"
+                    );
+
+
+                rows.forEach(
+                    function (
+                        row,
+                        index
+                    ) {
+
+                        row.cells[0]
+                            .textContent =
+                            index + 1;
+
+                    }
+                );
+
+
+                alert(
+                    "Data absensi berhasil dihapus!"
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
