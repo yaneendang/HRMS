@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - HRMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            color: #172554;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 38px;
+            border-radius: 20px;
+            box-shadow: 0 15px 45px rgba(30, 41, 59, 0.12);
+        }
+
+        .logo {
+            width: 62px;
+            height: 62px;
+            background: #4f46e5;
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 23px;
+            font-weight: 800;
+            margin: 0 auto 18px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dbe2ef;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .login-button {
+            width: 100%;
+            border: none;
+            background: #4f46e5;
+            color: white;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .login-button:hover {
+            background: #4338ca;
+        }
+
+        .error {
+            display: none;
+            background: #fef2f2;
+            color: #b91c1c;
+            border-radius: 8px;
+            padding: 11px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 11px;
+            margin-top: 26px;
+        }
+
+        .demo-info {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 18px;
+            font-size: 12px;
+            line-height: 1.8;
+            color: #475569;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="logo">HR</div>
+
+        <h1>Selamat Datang</h1>
+        <p class="subtitle">
+            Human Resource Management System<br>
+            Silakan login untuk masuk ke halaman admin.
+        </p>
+
+        <form id="loginForm">
+            <div class="error" id="errorMessage">
+                Username atau password salah.
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username Admin</label>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Masukkan username"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Masukkan password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">
+                Login Admin
+            </button>
+        </form>
+
+        <div class="demo-info">
+            <strong>Akun demo untuk pengujian</strong><br>
+            Username: admin<br>
+            Password: admin123
+        </div>
+
+        <div class="footer">
+            © 2026 HRMS — Human Resource Management System
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            if (username === "admin" && password === "admin123") {
+                // Menandai sesi login pada browser untuk prototipe.
+                sessionStorage.setItem("hrmsLoggedIn", "true");
+                sessionStorage.setItem("hrmsUsername", "admin");
+
+                
+                window.location.href = "/layout.html";
+            } else {
+                errorMessage.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
