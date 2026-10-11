@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Admin - HRMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: #172554;
+            background: #f5f7fb;
+        }
+
+        .topbar {
+            min-height: 82px;
+            background: white;
+            border-bottom: 1px solid #e5eaf2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 5%;
+            gap: 15px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 21px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #4f46e5;
+            color: white;
+            display: grid;
+            place-items: center;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 11px 16px;
+            border: 1px solid #dddafe;
+            border-radius: 9px;
+        }
+
+        main {
+            max-width: 1050px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h1 {
+            margin: 0 0 9px;
+            font-size: 28px;
+        }
+
+        .page-heading p {
+            color: #64748b;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .profile-card {
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 17px;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(15, 23, 42, .04);
+        }
+
+        .profile-side {
+            padding: 35px 25px;
+            background: #fafaff;
+            border-right: 1px solid #e5eaf2;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #e0e7ff;
+            color: #4f46e5;
+            border: 5px solid white;
+            box-shadow: 0 0 0 1px #c7d2fe;
+            font-size: 38px;
+            font-weight: 800;
+        }
+
+        .profile-side h2 {
+            font-size: 18px;
+            margin: 0 0 8px;
+            line-height: 1.5;
+        }
+
+        .role {
+            display: inline-block;
+            color: #4338ca;
+            background: #eef2ff;
+            border-radius: 20px;
+            padding: 7px 13px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .profile-side p {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.8;
+            margin-top: 18px;
+        }
+
+        .profile-content {
+            padding: 32px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 800;
+            margin: 0 0 8px;
+        }
+
+        .section-desc {
+            font-size: 13px;
+            color: #64748b;
+            margin: 0 0 25px;
+            line-height: 1.6;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 2px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 9px;
+            color: #334155;
+        }
+
+        input, select {
+            width: 100%;
+            min-height: 44px;
+            padding: 12px;
+            border: 1px solid #dbe2ef;
+            border-radius: 9px;
+            font: inherit;
+            font-size: 13px;
+            background: white;
+            color: #172554;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px #eef2ff;
+        }
+
+        input:disabled {
+            background: #f1f5f9;
+            color: #64748b;
+            cursor: not-allowed;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px solid #e5eaf2;
+        }
+
+        .button {
+            padding: 12px 18px;
+            border-radius: 9px;
+            border: none;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button-primary {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #4338ca;
+        }
+
+        .button-secondary {
+            background: #f1f5f9;
+            color: #334155;
+        }
+
+        .message {
+            display: none;
+            padding: 12px 14px;
+            margin-bottom: 20px;
+            border-radius: 9px;
+            background: #ecfdf5;
+            color: #047857;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 11px;
+            padding: 25px 15px;
+        }
+
+        @media (max-width: 720px) {
+            .profile-card {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-side {
+                border-right: none;
+                border-bottom: 1px solid #e5eaf2;
+            }
+
+            .profile-content {
+                padding: 23px 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">HR</div>
+            <span>HRMS</span>
+        </div>
+
+        <a class="back-button" href="../layout.html">
+            ← Kembali ke Dashboard
+        </a>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <h1>Profil Saya</h1>
+            <p>Kelola informasi akun administrator HRMS kamu.</p>
+        </div>
+
+        <section class="profile-card">
+            <aside class="profile-side">
+                <div class="avatar" id="avatar">L</div>
+                <h2 id="profileName">Lovita Rosiyane Endang</h2>
+                <span class="role">Administrator HRMS</span>
+                <p>
+                    Akun administrator untuk pengelolaan
+                    data kepegawaian dan sumber daya manusia.
+                </p>
+            </aside>
+
+            <div class="profile-content">
+                <h2 class="section-title">Informasi Pribadi</h2>
+                <p class="section-desc">
+                    Periksa dan perbarui informasi profil administrator.
+                </p>
+
+                <div class="message" id="successMessage">
+                    Profil berhasil disimpan di browser ini.
+                </div>
+
+                <form id="profileForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap</label>
+                            <input
+                                type="text"
+                                id="nama"
+                                value="Lovita Rosiyane Endang"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input
+                                type="text"
+                                id="username"
+                                value="admin"
+                                disabled
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Masukkan email"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telepon">Nomor Telepon</label>
+                            <input
+                                type="tel"
+                                id="telepon"
+                                placeholder="Masukkan nomor telepon"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jabatan">Jabatan</label>
+                            <input
+                                type="text"
+                                id="jabatan"
+                                value="Administrator"
+                                disabled
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="departemen">Departemen</label>
+                            <input
+                                type="text"
+                                id="departemen"
+                                value="Human Resources (HR)"
+                                disabled
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            id="resetButton"
+                        >
+                            Batal
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="button button-primary"
+                        >
+                            Simpan Perubahan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 HRMS - Human Resource Management System
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+
+    <script>
+        const form = document.getElementById("profileForm");
+        const nama = document.getElementById("nama");
+        const email = document.getElementById("email");
+        const telepon = document.getElementById("telepon");
+        const avatar = document.getElementById("avatar");
+        const profileName = document.getElementById("profileName");
+        const successMessage = document.getElementById("successMessage");
+
+        const defaultProfile = {
+            nama: "Lovita Rosiyane Endang",
+            email: "",
+            telepon: ""
+        };
+
+        function loadProfile() {
+            let profile = defaultProfile;
+
+            try {
+                const saved = localStorage.getItem("hrmsProfile");
+                if (saved) profile = {
+                    ...defaultProfile,
+                    ...JSON.parse(saved)
+                };
+            } catch (error) {
+                console.error("Gagal membaca profil:", error);
+            }
+
+            nama.value = profile.nama;
+            email.value = profile.email;
+            telepon.value = profile.telepon;
+
+            updatePreview();
+        }
+
+        function updatePreview() {
+            profileName.textContent = nama.value.trim() ||
+                "Lovita Rosiyane Endang";
+
+            avatar.textContent =
+                (nama.value.trim() || "L").charAt(0).toUpperCase();
+        }
+
+        nama.addEventListener("input", updatePreview);
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const profile = {
+                nama: nama.value.trim(),
+                email: email.value.trim(),
+                telepon: telepon.value.trim()
+            };
+
+            localStorage.setItem("hrmsProfile", JSON.stringify(profile));
+
+            updatePreview();
+            successMessage.style.display = "block";
+
+            setTimeout(() => {
+                successMessage.style.display = "none";
+            }, 3500);
+        });
+
+        document.getElementById("resetButton").addEventListener("click", function() {
+            loadProfile();
+            successMessage.style.display = "none";
+        });
+
+        loadProfile();
+    </script>
+</body>
+</html>
